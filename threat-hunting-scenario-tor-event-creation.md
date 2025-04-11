@@ -75,23 +75,16 @@ DeviceFileEvents
 ---
 
 ## Created By:
-- **Author Name**: Josh Madakor
-- **Author Contact**: https://www.linkedin.com/in/joshmadakor/
-- **Date**: August 31, 2024
+- **Author Name**: Erik Alvarez
+- **Author Contact**: https://www.linkedin.com/in/cybererik/
+- **Date**: April 11, 2025
 
-## Validated By:
-- **Reviewer Name**: 
-- **Reviewer Contact**: 
-- **Validation Date**: 
+## Validated By: 
+- **Reviewer Name**: Josh Madakor
+- **Reviewer Contact**: https://www.linkedin.com/in/joshmadakor/
+- **Validation Date**: August 31, 2024
 
 ---
 
 ## Additional Notes:
 - **None**
-
----
-
-## Revision History:
-| **Version** | **Changes**                   | **Date**         | **Modified By**   |
-|-------------|-------------------------------|------------------|-------------------|
-| 1.0         | Initial draft                  | `September  6, 2024`  | `Josh Madakor`   
