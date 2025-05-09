@@ -176,7 +176,7 @@ This query gives you a view of failed logins, highlighting potential security co
 ![Screenshot 2025-01-13 115400](https://github.com/user-attachments/assets/7089d599-eedc-4e57-83e8-02e779289f16)
 
 ---
-This query helps analyze Azure activity logs related to resource creation and enriches them with geographic details. Here's a breakdown of how it works 🌐.
+This query helps analyze Azure activity logs related to resource creation and enriches them with geographic details. Here's a breakdown of how it works.
 ---
 
 ### **Your KQL Query**  
