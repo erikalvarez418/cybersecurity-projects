@@ -1,5 +1,5 @@
 
-## **Why KQL Maps Are Essential for CEOs and Non-Tech People** 🌍📊
+## **Why KQL Maps Are Essential for CEOs and Non-Tech People** 
 ![cropped-image (19)](https://github.com/user-attachments/assets/67857aeb-26ac-4e35-8510-9b72d36032e0)
 
 A KQL map transforms complex data into clear, actionable visuals, making it easier to spot trends, manage risks, and make informed decisions.  
@@ -9,7 +9,7 @@ A KQL map transforms complex data into clear, actionable visuals, making it easi
 - **Simplify Data**: Turn overwhelming data into easy-to-understand visuals for your leadership team.  
 - **Act Proactively**: Get real-time insights to respond faster to opportunities and challenges.  
 
-Think of it as your business’s GPS for navigating data smarter and faster. 🚀
+Think of it as your business’s GPS for navigating data smarter and faster. 
 ---
 
 ---
