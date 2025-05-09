@@ -19,7 +19,7 @@ Think of it as your business’s GPS for navigating data smarter and faster.
 
 ---
 
-This query helps you track **malicious network flows** in Azure and enriches the data with **geolocation details**. Here’s a breakdown 🌐.
+This query helps you track **malicious network flows** in Azure and enriches the data with **geolocation details**. Here’s a breakdown.
 ---
 
 ### **Your KQL Query**  
@@ -38,51 +38,51 @@ MaliciousFlows
 
 This query helps you track **malicious network flows** in Azure and enriches the data with **geolocation details**. Here’s a breakdown:
 
-1. **GeoIP Watchlist** 🌍:  
+1. **GeoIP Watchlist**:  
    `let GeoIPDB_FULL = _GetWatchlist("geoip");`  
    This loads a geo-location database to map IP addresses to geographic details like country, city, latitude, and longitude.
 
-2. **Filtering Malicious Flows** ⚠️:  
+2. **Filtering Malicious Flows**:  
    The `AzureNetworkAnalytics_CL` table is filtered to identify malicious flows:
-   - **`FlowType_s == "MaliciousFlow"`** 🔴: Filters the data to only include malicious flows.
+   - **`FlowType_s == "MaliciousFlow"`**: Filters the data to only include malicious flows.
 
-3. **Sorting and Selecting Data** 🔢:  
-   - **`order by TimeGenerated desc`** ⏳: Orders the flows by the most recent time.
-   - **`project TimeGenerated, FlowType = FlowType_s, IpAddress = SrcIP_s, DestinationIpAddress = DestIP_s, DestinationPort = DestPort_d, Protocol = L7Protocol_s, NSGRuleMatched = NSGRules_s;`** 📝: Selects the relevant fields: 
-     - **TimeGenerated** 🕒: When the flow was detected.
-     - **FlowType** ⚡: Type of flow (in this case, "MaliciousFlow").
-     - **IpAddress** 🌐: The source IP address.
-     - **DestinationIpAddress** 🌍: The destination IP address.
-     - **DestinationPort** 🔌: The destination port.
-     - **Protocol** 🔐: The layer 7 protocol used (HTTP, etc.).
-     - **NSGRuleMatched** 🛡️: Any Network Security Group rules that were triggered.
+3. **Sorting and Selecting Data**:  
+   - **`order by TimeGenerated desc`**: Orders the flows by the most recent time.
+   - **`project TimeGenerated, FlowType = FlowType_s, IpAddress = SrcIP_s, DestinationIpAddress = DestIP_s, DestinationPort = DestPort_d, Protocol = L7Protocol_s, NSGRuleMatched = NSGRules_s;`**: Selects the relevant fields: 
+     - **TimeGenerated**: When the flow was detected.
+     - **FlowType**: Type of flow (in this case, "MaliciousFlow").
+     - **IpAddress**: The source IP address.
+     - **DestinationIpAddress**: The destination IP address.
+     - **DestinationPort**: The destination port.
+     - **Protocol**: The layer 7 protocol used (HTTP, etc.).
+     - **NSGRuleMatched**: Any Network Security Group rules that were triggered.
 
-4. **GeoIP Enrichment** 🌍🔍:  
+4. **GeoIP Enrichment**:  
    The query enriches the malicious flow data by using the `ipv4_lookup` function to find geographic details based on the source IP address:
    - **`evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network)`** 🌍: This function adds location details (city, country, latitude, longitude) for the source IP address.
 
-5. **Data Projection** 🎯:  
+5. **Data Projection**:  
    The query then selects the final output fields:
-   - **TimeGenerated** 🕒: When the flow occurred.
-   - **FlowType** ⚡: Type of flow.
-   - **IpAddress** 🌐: Source IP address.
-   - **DestinationIpAddress** 🌍: Destination IP address.
-   - **DestinationPort** 🔌: Destination port.
-   - **Protocol** 🔐: Protocol used.
-   - **NSGRuleMatched** 🛡️: NSG rule triggered.
-   - **Latitude** 📍 and **Longitude** 🌍: Geographical coordinates.
-   - **City** 🏙️: The city associated with the IP.
-   - **Country** 🌎: The country associated with the IP.
-   - **Friendly_location** 🏷️: A combined label with city and country for better readability.
+   - **TimeGenerated**: When the flow occurred.
+   - **FlowType**: Type of flow.
+   - **IpAddress**: Source IP address.
+   - **DestinationIpAddress**: Destination IP address.
+   - **DestinationPort**: Destination port.
+   - **Protocol**: Protocol used.
+   - **NSGRuleMatched**: NSG rule triggered.
+   - **Latitude** and **Longitude**: Geographical coordinates.
+   - **City**: The city associated with the IP.
+   - **Country**: The country associated with the IP.
+   - **Friendly_location**: A combined label with city and country for better readability.
 
 ### Final Output:
 This query gives you a detailed view of malicious network flows, including:
 - **FlowType** ⚡: The type of flow (malicious).
-- **IP Addresses** 🌐🌍: Source and destination IPs.
-- **Destination Port** 🔌: The target port.
-- **Protocol** 🔐: The type of protocol used.
-- **NSG Rule Matched** 🛡️: Which security rules were triggered.
-- **Geolocation Information** 🌍📍: City, country, latitude, and longitude for the source IP, helping you track the location of malicious flows in real-time.
+- **IP Addresses**: Source and destination IPs.
+- **Destination Port**: The target port.
+- **Protocol**: The type of protocol used.
+- **NSG Rule Matched**: Which security rules were triggered.
+- **Geolocation Information**: City, country, latitude, and longitude for the source IP, helping you track the location of malicious flows in real-time.
 
 This helps identify threats and track malicious activity more effectively by adding geographical context to each event, improving your network security insights.
 
@@ -97,7 +97,7 @@ To better understand and refine your KQL query for Microsoft Defender and ensure
 
 ---
 
-In short, this query provides a count of successful logins, along with details like where the user is logging in from 🌐.
+In short, this query provides a count of successful logins, along with details like where the user is logging in from.
 ---
 
 ### **Your KQL Query**  
@@ -111,26 +111,26 @@ SigninLogs
 
 This query analyzes sign-in logs to give you a clear picture of user activity. Here’s a simple breakdown:  
 
-1. **SigninLogs** 📜: This is where Azure AD sign-in data is stored.  
+1. **SigninLogs**: This is where Azure AD sign-in data is stored.  
 
-2. **`where ResultType == 0`** ✅: Filters the data to only include successful sign-ins (ResultType 0 means success).  
+2. **`where ResultType == 0`**: Filters the data to only include successful sign-ins (ResultType 0 means success).  
 
-3. **`summarize LoginCount = count()`** 🔢: Counts how many successful logins happened and groups them by specific details, such as:  
-   - **Identity** 👤: The user who logged in.  
-   - **Latitude** 🌍 & **Longitude** 📍: The geographic location of the user’s sign-in.  
-   - **City** 🏙️: The city where the sign-in occurred.  
-   - **Country** 🌎: The country where the sign-in occurred.  
+3. **`summarize LoginCount = count()`**: Counts how many successful logins happened and groups them by specific details, such as:  
+   - **Identity**: The user who logged in.  
+   - **Latitude** & **Longitude**: The geographic location of the user’s sign-in.  
+   - **City**: The city where the sign-in occurred.  
+   - **Country**: The country where the sign-in occurred.  
 
-4. **`project`** 🎯: This step selects and renames the final data you want to display:  
-   - **Identity** 👥: The user’s name or ID.  
-   - **Latitude & Longitude** 📍🌍: Their location.  
-   - **City & Country** 🏙️🌍: Where they logged in from.  
-   - **LoginCount** 🔢: The number of successful logins from that user.  
-   - **`friendly_label`** 🏷️: A friendly label that combines the user's name with their city and country for easier reference.  
+4. **`project`**: This step selects and renames the final data you want to display:  
+   - **Identity**: The user’s name or ID.  
+   - **Latitude & Longitude**: Their location.  
+   - **City & Country**: Where they logged in from.  
+   - **LoginCount**: The number of successful logins from that user.  
+   - **`friendly_label`**: A friendly label that combines the user's name with their city and country for easier reference.  
 
 ---
 
-CEOs and non-tech people will love this because it turns complex data into easy-to-understand insights 🌍📊. It shows where users are logging in from 🌎, how many successful logins there are 🔢, and provides a clear view of business activity without technical jargon. Perfect for making fast, informed decisions and spotting trends! 💡
+CEOs and non-tech people will love this because it turns complex data into easy-to-understand insights. It shows where users are logging in from, how many successful logins there are, and provides a clear view of business activity without technical jargon. Perfect for making fast, informed decisions and spotting trends!
 
 ---
 ## **3. KQL-Map-Azure-Authentication-Failures**
@@ -139,7 +139,7 @@ CEOs and non-tech people will love this because it turns complex data into easy-
 
 ---
 
-This query helps you identify failed sign-ins by analyzing the **SigninLogs** data. Here's a simple breakdown 🌐.
+This query helps you identify failed sign-ins by analyzing the **SigninLogs** data. Here's a simple breakdown.
 ---
 
 ### **Your KQL Query**  
@@ -151,22 +151,22 @@ SigninLogs
 | project Identity, Latitude, Longitude, City, Country, LoginCount, friendly_label = strcat(Identity, " - ", City, ", ", Country)
 ```
 
-1. **SigninLogs** 📜: This is where Azure AD sign-in data is stored.
+1. **SigninLogs**: This is where Azure AD sign-in data is stored.
 
-2. **`where ResultType != 0`** ❌: Filters the data to only include failed sign-ins (ResultType other than 0 means failure).
+2. **`where ResultType != 0`**: Filters the data to only include failed sign-ins (ResultType other than 0 means failure).
 
-3. **`summarize LoginCount = count()`** 🔢: Counts the number of failed logins, grouped by specific details, such as:  
-   - **Identity** 👤: The user who attempted to log in.
-   - **Latitude** 🌍 & **Longitude** 📍: The geographic location of the failed sign-in.
-   - **City** 🏙️: The city where the failed sign-in occurred.
-   - **Country** 🌎: The country where the failed sign-in occurred.
+3. **`summarize LoginCount = count()`**: Counts the number of failed logins, grouped by specific details, such as:  
+   - **Identity**: The user who attempted to log in.
+   - **Latitude** & **Longitude**: The geographic location of the failed sign-in.
+   - **City**: The city where the failed sign-in occurred.
+   - **Country**: The country where the failed sign-in occurred.
 
-4. **`project`** 🎯: This step selects and renames the final data you want to display:  
-   - **Identity** 👥: The user’s name or ID.
-   - **Latitude & Longitude** 📍🌍: Their location.
-   - **City & Country** 🏙️🌍: Where the failed sign-in occurred.
-   - **LoginCount** 🔢: The number of failed logins from that user.
-   - **`friendly_label`** 🏷️: A friendly label that combines the user's name with their city and country for easier reference.
+4. **`project`**: This step selects and renames the final data you want to display:  
+   - **Identity**: The user’s name or ID.
+   - **Latitude & Longitude**: Their location.
+   - **City & Country**: Where the failed sign-in occurred.
+   - **LoginCount**: The number of failed logins from that user.
+   - **`friendly_label`**: A friendly label that combines the user's name with their city and country for easier reference.
 
 This query gives you a view of failed logins, highlighting potential security concerns, and makes it easier to spot patterns like repeated failed attempts from specific locations 🌐.
 
@@ -209,35 +209,35 @@ AzureActivityRecords
 
 2. **Filtering Azure Activity** 🔍:  
    The `AzureActivity` table is filtered to exclude certain caller IDs and only consider valid IP addresses and successful resource creation actions:
-   - **`where not(Caller matches regex ...)`** ❌: Filters out logs with GUID caller IDs (usually representing machines or services).
-   - **`where CallerIpAddress matches regex ...`** 🌐: Ensures the logs only contain valid IPv4 addresses.
-   - **`where OperationNameValue endswith "WRITE" ...`** 📝: Focuses on write operations, like creating or modifying resources, and includes only successful activities.
+   - **`where not(Caller matches regex ...)`**: Filters out logs with GUID caller IDs (usually representing machines or services).
+   - **`where CallerIpAddress matches regex ...`**: Ensures the logs only contain valid IPv4 addresses.
+   - **`where OperationNameValue endswith "WRITE" ...`**: Focuses on write operations, like creating or modifying resources, and includes only successful activities.
 
-3. **Summarizing Resource Creation** 🔢:  
+3. **Summarizing Resource Creation**:  
    `summarize ResouceCreationCount = count()` groups the data to count how many resource creation actions took place, grouped by:
-   - **Caller** 👤: The user or service making the request.
-   - **CallerIpAddress** 📶: The IP address used during the request.
+   - **Caller**: The user or service making the request.
+   - **CallerIpAddress**: The IP address used during the request.
 
-4. **GeoIP Enrichment** 🌍🔍:  
+4. **GeoIP Enrichment**:  
    Using the `ipv4_lookup` function, geographic details (such as country, latitude, and longitude) are added to the data by looking up the **GeoIPDB_FULL** watchlist.
 
-5. **Data Projection** 🎯:  
+5. **Data Projection**:  
    The query then creates a friendly label and selects the fields to display:
-   - **Caller** 👥: The name or ID of the user making the request.
-   - **CallerPrefix** 👤: The part before the "@" in the caller's user principal name (UPN).
-   - **CallerIpAddress** 🌐: The IP address used during the request.
-   - **ResouceCreationCount** 🔢: The count of resource creation actions.
-   - **Country** 🌎, **Latitude** 📍, and **Longitude** 🌍: Geographic details about the action.
-   - **friendly_label** 🏷️: A user-friendly label combining the caller's name and location for easy reference.
+   - **Caller**: The name or ID of the user making the request.
+   - **CallerPrefix**: The part before the "@" in the caller's user principal name (UPN).
+   - **CallerIpAddress**: The IP address used during the request.
+   - **ResouceCreationCount**: The count of resource creation actions.
+   - **Country**, **Latitude**, and **Longitude** 🌍: Geographic details about the action.
+   - **friendly_label**: A user-friendly label combining the caller's name and location for easy reference.
 
 ### Final Output:
 This enriched query gives you a clearer view of resource creation activity, with geographic context to help identify potential suspicious behavior or patterns:
-- **Caller** 👤: Who initiated the action.
-- **CallerPrefix** 🧑‍💼: The caller's name before the "@" symbol.
-- **CallerIpAddress** 📶: The IP address used.
-- **ResourceCreationCount** 🔢: The number of resources created.
-- **Country, Latitude, and Longitude** 🌍: Location details to map the activity.
-- **friendly_label** 🏷️: A friendly label combining the user's name and location.
+- **Caller**: Who initiated the action.
+- **CallerPrefix**: The caller's name before the "@" symbol.
+- **CallerIpAddress**: The IP address used.
+- **ResourceCreationCount**: The number of resources created.
+- **Country, Latitude, and Longitude**: Location details to map the activity.
+- **friendly_label**: A friendly label combining the user's name and location.
 
 This query helps you track resource creation with geographical context, making it easier to spot anomalies or track user activity across different regions.
 
@@ -267,53 +267,53 @@ DeviceLogonEvents
    `let GeoIPDB_FULL = _GetWatchlist("geoip");`  
    This loads a geolocation database to map IP addresses to location details like country, city, latitude, and longitude.
 
-2. **Filtering Failed Logins** ❌:  
+2. **Filtering Failed Logins**:  
    - **`DeviceLogonEvents`**: This table contains the logon data for devices.
-   - **`where ActionType == "LogonFailed"`** 🛑: Filters the data to only include failed logon attempts.
+   - **`where ActionType == "LogonFailed"`**: Filters the data to only include failed logon attempts.
 
-3. **Sorting Events** ⏳:  
-   - **`order by TimeGenerated desc`** 🕒: Sorts the events by the most recent time of occurrence.
+3. **Sorting Events**:  
+   - **`order by TimeGenerated desc`**: Sorts the events by the most recent time of occurrence.
 
-4. **GeoIP Enrichment** 🌍🔍:  
+4. **GeoIP Enrichment**:  
    - **`evaluate ipv4_lookup(GeoIPDB_FULL, RemoteIP, network)`**: This function enriches the failed logon events by looking up the geographic location of the **RemoteIP** (the IP from which the logon attempt originated).
 
-5. **Summarizing Data** 🔢:  
-   - **`summarize LoginAttempts = count()`** 🔢: Counts the number of failed login attempts, grouped by the following fields:
-     - **RemoteIP** 🌐: The source IP address of the failed login attempt.
-     - **City** 🏙️: The city associated with the IP address.
-     - **Country** 🌎: The country associated with the IP address.
-     - **`friendly_location`** 🏷️: A combined label of city and country for easier readability (e.g., "London (UK)").
-     - **Latitude** 📍 and **Longitude** 🌍: Geographical coordinates of the IP.
+5. **Summarizing Data**:  
+   - **`summarize LoginAttempts = count()`**: Counts the number of failed login attempts, grouped by the following fields:
+     - **RemoteIP**: The source IP address of the failed login attempt.
+     - **City**: The city associated with the IP address.
+     - **Country**: The country associated with the IP address.
+     - **`friendly_location`**: A combined label of city and country for easier readability (e.g., "London (UK)").
+     - **Latitude** and **Longitude**: Geographical coordinates of the IP.
 
 ### Final Output:
 This query provides a detailed view of **failed logon attempts**, including:
-- **Remote IP** 🌐: The IP address that attempted to log in.
-- **City & Country** 🏙️🌍: The city and country of the source IP.
-- **Latitude & Longitude** 📍🌍: The geographical coordinates.
-- **Login Attempts** 🔢: The number of failed login attempts for each source IP.
-- **Friendly Location** 🏷️: A clear, combined label of city and country.
+- **Remote IP**: The IP address that attempted to log in.
+- **City & Country**: The city and country of the source IP.
+- **Latitude & Longitude**: The geographical coordinates.
+- **Login Attempts**: The number of failed login attempts for each source IP.
+- **Friendly Location**: A clear, combined label of city and country.
 
 ### Why It's Useful:
-- **Security Insights** 🛡️: Helps detect and track failed login attempts and identify potential threats based on location.
-- **Geographical Context** 🌍: Adds location details to each failed logon, helping to identify if there's unusual activity originating from specific countries or cities.
-- **Proactive Measures** ⚠️: Enables you to take proactive security measures based on location-based anomalies, such as blocking certain regions or investigating suspicious patterns.
+- **Security Insights**: Helps detect and track failed login attempts and identify potential threats based on location.
+- **Geographical Context**: Adds location details to each failed logon, helping to identify if there's unusual activity originating from specific countries or cities.
+- **Proactive Measures**: Enables you to take proactive security measures based on location-based anomalies, such as blocking certain regions or investigating suspicious patterns.
 ---
 
 To create a **KQL Map** in **Microsoft Sentinel** through **Workbooks**:
 
-1. **Go to Microsoft Sentinel** 🌐 in Azure Portal.
-2. **Select your workspace** 🏢 and click **Workbooks**.
-3. Click **+ Add Workbook** ➕.
-4. **Choose your data source** 📊 (e.g., **SigninLogs**).
-5. Write your **KQL query** ✍️ (e.g., `SigninLogs | summarize LoginCount by Latitude, Longitude`).
-6. Click **+ Add Visualization**, select **Map** 🗺️.
-7. **Map Latitude & Longitude** fields, customize your map 🎨.
-8. **Save** and **Pin to Dashboard** 📌.
+1. **Go to Microsoft Sentinel** in Azure Portal.
+2. **Select your workspace** and click **Workbooks**.
+3. Click **+ Add Workbook**.
+4. **Choose your data source** (e.g., **SigninLogs**).
+5. Write your **KQL query** (e.g., `SigninLogs | summarize LoginCount by Latitude, Longitude`).
+6. Click **+ Add Visualization**, select **Map**.
+7. **Map Latitude & Longitude** fields, customize your map.
+8. **Save** and **Pin to Dashboard**.
 
-And you're all set with a **KQL Map**! 🌍
+And you're all set with a **KQL Map**!
 
 ---
 
 **Conclusion: Why CEOs and Non-Tech Leaders Like KQL Maps**  
 
-KQL Maps turn complex data into easy-to-understand visuals 📊, helping CEOs and non-tech leaders spot security risks quickly 🚨. With location-based insights 🌍, they can make informed decisions 💡 without needing technical expertise, ensuring better protection for the company 🛡️. Simple, actionable, and effective! ✅
+KQL Maps turn complex data into easy-to-understand visuals, helping CEOs and non-tech leaders spot security risks quickly. With location-based insights, they can make informed decisions without needing technical expertise, ensuring better protection for the company. Simple, actionable, and effective!
